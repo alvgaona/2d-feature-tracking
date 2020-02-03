@@ -16,7 +16,7 @@ Once you are finished with this project, the keypoint matching part will be set 
 ## Dependencies for Running Locally
 * `cmake >= 2.8`
   * All OSes: [click here for installation instructions][CMake]
-* `make >= 4.1` (Linux, Mac), 3.81 (Windows)
+* `make >= 4.1` (Linux, macOS), 3.81 (Windows)
   * Linux: make is installed by default on most Linux distros
   * macOS: [install Xcode command line tools to get make][Xcode]
   * Windows: [Click here for installation instructions][Make]
