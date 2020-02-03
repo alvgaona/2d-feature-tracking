@@ -1,18 +1,17 @@
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.11.3)
 
-add_definitions(-std=c++11)
-
+set(CMAKE_CXX_STANDARD 14)
 set(CXX_FLAGS "-Wall")
-set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
-
-project(camera_fusion)
+set(CMAKE_CXX_FLAGS, ${CXX_FLAGS})
 
 find_package(OpenCV 4.1 REQUIRED)
 
-include_directories(${OpenCV_INCLUDE_DIRS})
-link_directories(${OpenCV_LIBRARY_DIRS})
-add_definitions(${OpenCV_DEFINITIONS})
+project(camera_fusion)
 
-# Executable for create matrix exercise
-add_executable (2D_feature_tracking src/matching2D_Student.cpp src/MidTermProject_Camera_Student.cpp)
-target_link_libraries (2D_feature_tracking ${OpenCV_LIBRARIES})
+file(GLOB SOURCES src/*.cpp)
+
+add_executable (feature_tracking ${SOURCES})
+add_definitions(${OpenCV_DEFINITIONS})
+target_include_directories(feature_tracking PRIVATE include ${OpenCV_INCLUDE_DIRS})
+target_link_directories(feature_tracking PRIVATE ${OpenCV_LIBRARY_DIRS})
+target_link_libraries (feature_tracking PRIVATE ${OpenCV_LIBRARIES})
