@@ -13,7 +13,8 @@ Once you are finished with this project, the keypoint matching part will be set 
 
 <img src="images/keypoints.png" width="820" height="248" />
 
-## Dependencies for Running Locally
+## Dependencies
+
 * `cmake >= 2.8`
   * All OSes: [click here for installation instructions][CMake]
 * `make >= 4.1` (Linux, macOS), 3.81 (Windows)
