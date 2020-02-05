@@ -13,7 +13,7 @@
 #include <sstream>
 #include <vector>
 
-#include "dataStructures.h"
+#include "data_structures.h"
 #include "matching2D.hpp"
 
 using namespace std;
