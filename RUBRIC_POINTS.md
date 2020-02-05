@@ -196,5 +196,7 @@ This document gathers information about all the rubric points met for this proje
 | `HARRIS`      | `BRISK`      |
 | `HARRIS`      | `FREAK`      |
 
+[ring_bufffer.h]: include/ring_buffer.h
+[ring_buffer.cpp]: src/ring_buffer.cpp
 [matching_2d.cpp]: src/matching_2d.cpp
 [camera_fusion.cpp]: src/camera_fusion.cpp
