@@ -15,19 +15,19 @@ Once you are finished with this project, the keypoint matching part will be set 
 
 ## Dependencies
 
-* `cmake >= 2.8`
-  * All OSes: [click here for installation instructions][CMake]
-* `make >= 4.1` (Linux, macOS), 3.81 (Windows)
-  * Linux: make is installed by default on most Linux distros
-  * macOS: [install Xcode command line tools to get make][Xcode]
-  * Windows: [Click here for installation instructions][Make]
-* `OpenCV >= 4.1`
+* `cmake >= 2.8`.
+  * All OSes: [click here for installation instructions][CMake].
+* `make >= 4.1` (Linux, macOS), 3.81 (Windows).
+  * Linux: make is installed by default on most Linux distros.
+  * macOS: [install Xcode command line tools to get make][Xcode].
+  * Windows: [Click here for installation instructions][Make].
+* `OpenCV >= 4.1`.
   * This must be compiled from source using the `-D OPENCV_ENABLE_NONFREE=ON` cmake flag for testing the SIFT and SURF detectors.
-  * The OpenCV 4.1.0 source code can be found [here][OpenCV]
-* `gcc/g++ >= 5.4`
-  * Linux: gcc / g++ is installed by default on most Linux distros
-  * macOS: same deal as make - [install Xcode command line tools][Xcode]
-  * Windows: recommend using [MinGW]
+  * The OpenCV 4.1.0 source code can be found [here][OpenCV].
+* `gcc/g++ >= 5.4`.
+  * Linux: gcc / g++ is installed by default on most Linux distros.
+  * macOS: same deal as make - [install Xcode command line tools][Xcode].
+  * Windows: recommend using [MinGW].
 
 ## Usage
 
