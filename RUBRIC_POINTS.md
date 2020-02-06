@@ -198,6 +198,18 @@ This document gathers information about all the rubric points met for this proje
 | `HARRIS`      | `BRISK`      | 0.468443                |
 | `HARRIS`      | `FREAK`      | 0.074067                |
 
+
+## Final thoughts
+
+The top 3 combinations are:
+ 
+ 1. FAST-BRIEF 
+ 2. FAST-ORB
+ 3. ORB-BRIEF
+ 
+This is in terms of processing time since most of the detectors have a really good
+distribution on the proceeding vehicle and number of keypoints.
+
 [ring_buffer.h]: include/ring_buffer.h
 [ring_buffer.cpp]: src/ring_buffer.cpp
 [matching_2d.cpp]: src/matching_2d.cpp
