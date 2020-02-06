@@ -12,7 +12,6 @@
 #include "ring_buffer.h"
 
 int main(int argc, const char *argv[]) {
-
   std::cout << "### INITIALIZING ### " << std::endl;
 
   std::string data_path = "../";
@@ -26,9 +25,10 @@ int main(int argc, const char *argv[]) {
   RingBuffer<DataFrame> ring_buffer(2);
 
   /* Configuration */
-  std::string detector_type = "HARRIS";
-  std::string descriptor_type = "BRISK";
-  std::string matcher_type = "MAT_BF";
+  // TODO: Move configuration parameters to a YAML file.
+  std::string detector_type = "SIFT";
+  std::string descriptor_type = "SIFT";
+  std::string matcher_type = "MAT_FLANN";
   std::string selector_type = "SEL_KNN";
 
   /* Miscellaneous */
@@ -36,7 +36,12 @@ int main(int argc, const char *argv[]) {
   bool focus_on_vehicle = true;
   bool visualize_matches = false;
 
+  /* Counters */
+  int total_keypoints = 0;
+  int total_matches = 0;
+
   for (size_t img_index = 0; img_index <= img_end_index - img_start_index; img_index++) {
+    // TODO: Create ImageGenerator class responsible of providing an image at a time.
     std::stringstream img_number;
     img_number << std::setfill('0') << std::setw(img_fill_width) << img_start_index + img_index;
     std::stringstream img_full_filename;
@@ -44,6 +49,7 @@ int main(int argc, const char *argv[]) {
 
     std::cout << "Converting image to grayscale." << std::endl;
 
+    // TODO: Add image grayscale conversion logic in ImageGenerator
     cv::Mat img, img_gray;
     img = cv::imread(img_full_filename.str());
     cv::cvtColor(img, img_gray, cv::COLOR_BGR2GRAY);
@@ -58,6 +64,7 @@ int main(int argc, const char *argv[]) {
 
     std::vector<cv::KeyPoint> keypoints;  // create empty feature list for current image
 
+    // TODO: Move this string based detection to a Method Factory
     if (detector_type == "SHITOMASI") {
       DetectKeypointsShiTomasi(keypoints, img_gray, false);
     } else if (detector_type == "HARRIS") {
@@ -66,6 +73,8 @@ int main(int argc, const char *argv[]) {
       DetectKeypointsModern(keypoints, img_gray, detector_type, false);
     }
 
+    // TODO: Read focus_on_vehicle value from a file.
+    //    This is a configuration parameter.
     cv::Rect vehicle_frame(535, 180, 180, 150);
     if (focus_on_vehicle) {
       keypoints.erase(std::remove_if(keypoints.begin(), keypoints.end(),
@@ -73,6 +82,7 @@ int main(int argc, const char *argv[]) {
                       keypoints.end());
     }
 
+    // TODO: Same with limit_keypoints.
     if (limit_keypoints) {
       int max_keypoints = 50;
 
@@ -85,9 +95,12 @@ int main(int argc, const char *argv[]) {
 
     ring_buffer.begin()->keypoints = keypoints;
 
+    total_keypoints += keypoints.size();
+
     std::cout << "Extracting keypoint descriptors" << std::endl;
 
     cv::Mat descriptors;
+    // TODO: Move this function to a factory.
     DescribeKeypoints(ring_buffer.begin()->keypoints, ring_buffer.begin()->image, descriptors, descriptor_type);
 
     // push descriptors for current frame to end of data buffer
@@ -96,9 +109,12 @@ int main(int argc, const char *argv[]) {
     if (ring_buffer.size() > 1) {
       std::cout << "Matching keypoint descriptors" << std::endl;
 
+      // TODO: Encapsulate matching procedure in a custom Matcher class.
       std::vector<cv::DMatch> matches;
       MatchDescriptors((ring_buffer.begin() + 1)->keypoints, ring_buffer.begin()->keypoints, (ring_buffer.begin() + 1)->descriptors,
                        ring_buffer.begin()->descriptors, matches, matcher_type, selector_type);
+
+      total_matches += matches.size();
 
       ring_buffer.begin()->keypoints_matches = matches;
 
@@ -116,6 +132,9 @@ int main(int argc, const char *argv[]) {
       }
     }
   }
+
+  std::cout << "Total keypoints: " << total_keypoints << std::endl;
+  std::cout << "Total matches: " << total_matches << std::endl;
 
   return 0;
 }

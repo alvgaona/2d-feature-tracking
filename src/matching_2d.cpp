@@ -2,8 +2,6 @@
 
 #include <numeric>
 
-// Find best matches for keypoints in two camera images based on several
-// matching methods
 void MatchDescriptors(std::vector<cv::KeyPoint> &keypoints_src, std::vector<cv::KeyPoint> &keypoints_ref, cv::Mat &descriptors_src,
                       cv::Mat &descriptors_ref, std::vector<cv::DMatch> &matches, const std::string &matcher_type,
                       const std::string &selector_type) {
@@ -37,7 +35,7 @@ void MatchDescriptors(std::vector<cv::KeyPoint> &keypoints_src, std::vector<cv::
         matches.push_back(knn_match[0]);
       }
     }
-    std::cout << "Keypoints removed: " << knn_matches.size() - matches.size() << " kpts." << std::endl;
+    std::cout << "Matches removed: " << knn_matches.size() - matches.size() << " kpts." << std::endl;
   }
 }
 
@@ -88,7 +86,6 @@ void DetectKeypointsShiTomasi(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img
   t = (static_cast<double>(cv::getTickCount()) - t) / cv::getTickFrequency();
   std::cout << "Shi-Tomasi detection with " << keypoints.size() << " keypoints in " << 1000 * t / 1.0 << " ms" << std::endl;
 
-  // visualize results
   if (visualize) {
     cv::Mat visible_image = img.clone();
     cv::drawKeypoints(img, keypoints, visible_image, cv::Scalar::all(-1), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
@@ -157,11 +154,11 @@ void DetectKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, c
   } else if (detector_type == "BRISK") {
     detector = cv::BRISK::create(30, 3, 1.0);
   } else if (detector_type == "ORB") {
-    detector = cv::ORB::create(500, 1.2f, 8, 31, 0, 2, cv::ORB::HARRIS_SCORE, 31, 20);
+    detector = cv::ORB::create(750, 1.2f, 8, 31, 0, 2, cv::ORB::HARRIS_SCORE, 31, 20);
   } else if (detector_type == "AKAZE") {
-    detector = cv::AKAZE::create(cv::AKAZE::DESCRIPTOR_MLDB, 0, 3, 0.001f, 4, 4, cv::KAZE::DIFF_PM_G2);
+    detector = cv::AKAZE::create(cv::AKAZE::DESCRIPTOR_MLDB, 0, 3, 0.001f, 5, 5, cv::KAZE::DIFF_PM_G2);
   } else if (detector_type == "SIFT") {
-    detector = cv::xfeatures2d::SIFT::create(0, 3, 0.04, 10, 1.6);
+    detector = cv::xfeatures2d::SIFT::create(0, 3, 0.05, 12, 1.8);
   } else {
     throw std::runtime_error("The provided detector algorithm is not supported.");
   }
