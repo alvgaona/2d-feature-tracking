@@ -1,5 +1,7 @@
 # 2D Feature Tracking
 
+<img src="images/keypoints.png" width="820" height="248" />
+
 The idea of the camera course is to build a collision detection system - that's the overall goal for the Final Project.
 As a preparation for this, you will now build the feature tracking part and test various detector / descriptor combinations to see which ones perform best. This mid-term project consists of four parts:
 
@@ -10,8 +12,6 @@ As a preparation for this, you will now build the feature tracking part and test
 
 See the classroom instruction and code comments for more details on each of these parts.
 Once you are finished with this project, the keypoint matching part will be set up and you can proceed to the next lesson, where the focus is on integrating Lidar points and on object detection using deep-learning. 
-
-<img src="images/keypoints.png" width="820" height="248" />
 
 ## Dependencies
 
@@ -40,7 +40,7 @@ git clone https://github.com/alvgaona/2d-feature-tracking.git
 2. Build the project.
 
 ```bash
-cd lidar-obstacle-detection
+cd 2d-feature-tracking
 make build
 ```
 
