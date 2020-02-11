@@ -1,12 +1,12 @@
 #ifndef CAMERA_FUSION_MATCHING_2D_H
 #define CAMERA_FUSION_MATCHING_2D_H
 
-#include <stdio.h>
-
 #include <cmath>
+#include <cstdio>
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <numeric>
 #include <opencv2/core.hpp>
 #include <opencv2/features2d.hpp>
 #include <opencv2/highgui/highgui.hpp>

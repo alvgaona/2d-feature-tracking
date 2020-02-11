@@ -2,7 +2,6 @@
 #define CAMERA_FUSION_RING_BUFFER_H
 
 #include <deque>
-#include <iterator>
 
 #include "data_frame.h"
 

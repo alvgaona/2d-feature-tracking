@@ -1,7 +1,5 @@
 #include "matching_2d.h"
 
-#include <numeric>
-
 void MatchDescriptors(std::vector<cv::KeyPoint> &keypoints_src, std::vector<cv::KeyPoint> &keypoints_ref, cv::Mat &descriptors_src,
                       cv::Mat &descriptors_ref, std::vector<cv::DMatch> &matches, const std::string &matcher_type,
                       const std::string &selector_type) {
