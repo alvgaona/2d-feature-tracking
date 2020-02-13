@@ -1,4 +1,4 @@
-# Rubric points (WIP)
+# Rubric points
 
 This document gathers information about all the rubric points met for this project.
 
